@@ -32,6 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
     final products = await netService.getProduct();
     final category = await netService.getCategory();
     final card = await netService.getCard();
+    print(products.status);
+    print(category.status);
+    print(card.status);
     if (products.status != 1 || category.status != 1 || card.status != 1) {
       Navigator.pushReplacement(
         context,
@@ -46,9 +49,9 @@ class _SplashScreenState extends State<SplashScreen> {
     await hiveService.setCategory(category);
     await hiveService.setCard(card);
 
-    // final int difference = time.difference(DateTime.now()).inSeconds;
-    // if (SLEEP_TIME + difference > 0)
-    //   await Future.delayed(Duration(seconds: SLEEP_TIME + difference));
+    final int difference = time.difference(DateTime.now()).inSeconds;
+    if (SLEEP_TIME + difference > 0)
+      await Future.delayed(Duration(seconds: SLEEP_TIME + difference));
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (_) => MainScreen.screen()),

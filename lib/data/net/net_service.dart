@@ -32,7 +32,7 @@ class NetService {
   Future<CardModel> getCard() async {
     Response? response = await _request(path: "cart", method: "GET");
     if (response != null) return CardModel.fromJson(response.data);
-    return CardModel(status: 0, errors: "NULL");
+    return CardModel(status: 1, errors: "NULL");
   }
 
   Future<String> auth() async {
